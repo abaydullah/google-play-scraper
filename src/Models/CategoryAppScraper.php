@@ -14,10 +14,10 @@ class CategoryAppScraper
 {
     use Client;
 
-    public function scrapeCategoryAppsByCategory($category)
+    public function scrapeCategoryAppsByCategory($category, $lang, $country)
     {
         try {
-            $app_url = $this->rootUrl . '/store/apps/category/' . $category . '?hl=' . $this->locate['lang'] . '&gl=' . $this->locate['country'];
+            $app_url = $this->rootUrl . '/store/apps/category/' . $category . '?hl=' . $lang . '&gl=' . $country;
             $response = $this->webClient->get($app_url);
             $content = $response->getBody()->getContents();
             $crawler = new Crawler($content);
@@ -36,7 +36,7 @@ class CategoryAppScraper
 
                 $apps['rating'] = $this->hasData($node->filter('div[class="LrNMN"]')) != false ?
                     str_replace('star', '', $node->filter('div[class="LrNMN"]')->text()) : '';
-                $apps['type'] = Categories::type($category . 'dd');
+                $apps['type'] = Categories::type($category);
                 return $apps;
             });
         } catch (GuzzleException $exception) {

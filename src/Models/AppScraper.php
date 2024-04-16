@@ -14,11 +14,11 @@ class AppScraper
 {
     use Client;
 
-    public function scrapeAppById($appId)
+    public function scrapeAppById($appId, $lang, $country)
     {
         try {
             $appData = [];
-            $app_url = $this->rootUrl . '/store/apps/details?id=' . $appId . '&hl=' . $this->locate['lang'] . '&gl=' . $this->locate['country'];
+            $app_url = $this->rootUrl . '/store/apps/details?id=' . $appId . '&hl=' . $lang . '&gl=' . $country;
             $response = $this->webClient->get($app_url);
             $content = $response->getBody()->getContents();
             $crawler = new Crawler($content);
@@ -60,7 +60,7 @@ class AppScraper
             $appData['category_slug'] = explode('category/', $appData['category_url'])[1];
             $appData['trailer'] = $this->hasData($crawler->filter('div[class="kuvzJc atwQXd"] > button')) != false ?
                 $crawler->filter('div[class="kuvzJc atwQXd"] > button')->attr('data-trailer-url') : '';
-
+            $appData['type'] = Categories::type($appData['category_slug']);
             $appData['screenshots'] = $crawler->filter('div[class="ULeU3b Utde2e"]')->each(function (Crawler $node, $i) {
                 return str_replace(" 2x", "", $node->filter('img')->attr('srcset'));;
             });
@@ -72,7 +72,7 @@ class AppScraper
                 $crawler->filter('meta[itemprop="description"]')->attr('content') : '';
             $appData['description'] = $this->hasData($crawler->filter('div[class="bARER"]')) != false ?
                 $crawler->filter('div[class="bARER"]')->html() : '';
-            $appData['type'] = Categories::type($appData['category_slug']);
+
             return $appData;
         } catch (GuzzleException $exception) {
             return $exception->getCode();

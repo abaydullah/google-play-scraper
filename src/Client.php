@@ -7,17 +7,9 @@ namespace Abaydullah\GooglePlayScraper;
 trait Client
 {
     private $rootUrl = 'https://play.google.com';
-    public $locate = [
-        'lang' => 'en',
-        'country' => 'us'
-    ];
     private $webClient;
-
-    private function setLocate($lang = 'en', $country = 'us')
-    {
-        $this->locate['lang'] = $lang;
-        $this->locate['country'] = $country;
-    }
+    protected string $lang = 'en';
+    protected string $country = 'us';
 
     public function __construct()
     {
@@ -27,6 +19,7 @@ trait Client
             )
         );
     }
+
 
     private function hasData($nodeFilter)
     {
@@ -39,6 +32,26 @@ trait Client
 
     private function filterNumber($number)
     {
-        return filter_var($number, FILTER_SANITIZE_NUMBER_INT);
+        return str_replace(',', '', strtok($number, ' '));
+    }
+
+    public function setDefaultLang($lang)
+    {
+        $this->lang = $lang;
+    }
+
+    public function getDefaultLang()
+    {
+        return $this->lang;
+    }
+
+    public function setDefaultCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    public function getDefaultCountry()
+    {
+        return $this->country;
     }
 }

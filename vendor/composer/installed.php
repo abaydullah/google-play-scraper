@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
         'name' => 'abaydullah/google-play-scraper',
-        'pretty_version' => '1.0.0+no-version-set',
+        'pretty_version' => 'v1.0.0',
         'version' => '1.0.0.0',
         'reference' => NULL,
         'type' => 'library',
@@ -11,7 +11,7 @@
     ),
     'versions' => array(
         'abaydullah/google-play-scraper' => array(
-            'pretty_version' => '1.0.0+no-version-set',
+            'pretty_version' => 'v1.0.0',
             'version' => '1.0.0.0',
             'reference' => NULL,
             'type' => 'library',

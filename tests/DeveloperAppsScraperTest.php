@@ -12,7 +12,7 @@ class DeveloperAppsScraperTest extends TestCase
     /** @test */
     function it_scrape_developer_apps()
     {
-        $developer = Scraper::getDeveloperApps('imo.im');
+        $developer = (new Scraper())->getDeveloperApps('Meta+Platforms,+Inc.');
         $this->assertCount('5', $developer[0]);
     }
 }

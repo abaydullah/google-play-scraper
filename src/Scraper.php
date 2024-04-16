@@ -12,15 +12,21 @@ use Abaydullah\GooglePlayScraper\Models\SearchAppScraper;
  */
 class Scraper
 {
-    public static function getApp($appId)
+    use Client;
+
+    public function getApp($appId, $lang = null, $country = null)
     {
-        return (new AppScraper)->scrapeAppById($appId);
+        $lang = $lang === null ? $this->getDefaultLang() : $lang;
+        $country = $country === null ? $this->getDefaultCountry() : $country;
+        return (new AppScraper)->scrapeAppById($appId, $lang, $country);
 
     }
 
-    public static function getCategoryApps($category)
+    public function getCategoryApps($category, $lang = null, $country = null)
     {
-        $apps = (new CategoryAppScraper())->scrapeCategoryAppsByCategory($category);
+        $lang = $lang === null ? $this->getDefaultLang() : $lang;
+        $country = $country === null ? $this->getDefaultCountry() : $country;
+        $apps = (new CategoryAppScraper())->scrapeCategoryAppsByCategory($category, $lang, $country);
         foreach ($apps as $key => $item) {
 
             if ($item['app_url'] == '') {
@@ -31,12 +37,12 @@ class Scraper
         return $apps;
     }
 
-    public static function getDeveloperApps($developerId)
+    public function getDeveloperApps($developerId)
     {
         return (new DeveloperAppScraper())->scrapeAppsByDeveloperId($developerId);
     }
 
-    public static function getSearchApps($search)
+    public function getSearchApps($search)
     {
         return (new SearchAppScraper())->scrapeAppsBySearch($search);
     }

@@ -15,4 +15,5 @@ class CategoryAppsTest extends TestCase
         $category = (new Scraper())->getCategoryApps('COMMUNICATION');
         $this->assertCount('6', $category[0]);
     }
+
 }

@@ -5,6 +5,7 @@ namespace Abaydullah\GooglePlayScraper;
 use Abaydullah\GooglePlayScraper\Models\AppScraper;
 use Abaydullah\GooglePlayScraper\Models\CategoryAppScraper;
 use Abaydullah\GooglePlayScraper\Models\DeveloperAppScraper;
+use Abaydullah\GooglePlayScraper\Models\DeveloperScraper;
 use Abaydullah\GooglePlayScraper\Models\SearchAppScraper;
 
 /**
@@ -28,7 +29,6 @@ class Scraper
         $country = $country === null ? $this->getDefaultCountry() : $country;
         $apps = (new CategoryAppScraper())->scrapeCategoryAppsByCategory($category, $lang, $country);
         foreach ($apps as $key => $item) {
-
             if ($item['app_url'] == '') {
                 unset($apps[$key]);
             }
@@ -37,6 +37,10 @@ class Scraper
         return $apps;
     }
 
+    public function getDeveloper($developerId)
+    {
+        return (new DeveloperScraper())->scrapeDeveloper($developerId);
+    }
     public function getDeveloperApps($developerId)
     {
         return (new DeveloperAppScraper())->scrapeAppsByDeveloperId($developerId);

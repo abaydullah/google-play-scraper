@@ -1,5 +1,6 @@
 # <center>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</center>
-Google Play Scraper For PHP 
+
+Google Play Scraper For PHP
 ===================
 
 
@@ -26,21 +27,28 @@ use Abaydullah\GooglePlayScraper\Scraper;
 
 ```
 
+### Default
 
-### Default 
 ```php
 $lang = 'en';
 $country = 'us'
 ```
+
 ##### There are several methods to configure the default behavior:
-* `setDefaultLang($lang)`: Sets the default language for all requests. `$lang` must be an [ISO_639-1](https://en.wikipedia.org/wiki/ISO_639-1) two letter language code. If not set, the default language is `en`.
-* `setDefaultCountry($country)`: Sets the default country for all requests. `$country` must be an [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) two letter country code. If not set, the default country is `us`.
-##### Example 
+
+* `setDefaultLang($lang)`: Sets the default language for all requests. `$lang` must be
+  an [ISO_639-1](https://en.wikipedia.org/wiki/ISO_639-1) two letter language code. If not set, the default language
+  is `en`.
+* `setDefaultCountry($country)`: Sets the default country for all requests. `$country` must be
+  an [ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) two letter country code. If not set, the default
+  country is `us`.
+
+##### Example
+
 ```php
 $scraper->setDefaultLang('bn');
 $scraper->setDefaultCountry('BD');
 ```
-
 
 ### getApp
 
@@ -101,7 +109,6 @@ Returns:
 
 ```
 
-
 ### getCategoryApps
 
 Gets multiple apps given Category Slug.
@@ -117,6 +124,7 @@ Gets multiple apps given Category Slug.
 ```php
 $apps = $scraper->getCategoryApps('COMMUNICATION');
 ```
+
 Return All Apps Related With This Category
 
 Returns:
@@ -174,6 +182,29 @@ array (
 )
 ```
 
+### getDeveloper
+
+Returns an array with the existing Developer Information From Google Play.
+
+#### Example
+
+```php
+$apps = $scraper->getDeveloper('6720847872553662727');
+```
+
+Returns:
+
+```php
+
+{
+  "cover" : "https://play-lh.googleusercontent.com/1QKAMf_OwuL8ftJBmPAScxrpYvpjLllyPF22Xu6pJ84z465MUF0YvS4p0f4rLTlRyDc=w3840-h2160"
+  "icon" : "https://play-lh.googleusercontent.com/kHRf85euDvW-Kg7ThXK2vv-J-Yye9uxoo6GQvUcAwudNRz1sQvXubAl_m2bu6KJofA=s94"
+  "name" : "Microsoft Corporation"
+  "des" : "Apps from Microsoft - the worldwide leader in software, services and devices that help people and businesses realize their full potential."
+}
+    
+```
+
 ### getDeveloperApps
 
 Returns an array with the existing Developer Apps From Google Play.
@@ -183,6 +214,7 @@ Returns an array with the existing Developer Apps From Google Play.
 ```php
 $apps = $scraper->getDeveloperApps('Meta+Platforms,+Inc.');
 ```
+
 Returns:
 
 ```php
@@ -332,5 +364,6 @@ array (
     },
 )
 ```
+
 # <center>Thanks You </center>
 

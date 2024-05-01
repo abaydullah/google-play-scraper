@@ -62,7 +62,7 @@ class AppScraper
                 $crawler->filter('div[class="kuvzJc atwQXd"] > button')->attr('data-trailer-url') : '';
             $appData['type'] = Categories::type($appData['category_slug']);
             $appData['screenshots'] = $crawler->filter('div[class="ULeU3b Utde2e"]')->each(function (Crawler $node, $i) {
-                return str_replace(" 2x", "", $node->filter('img')->attr('srcset'));;
+                return str_replace(" 2x", "", $node->filter('img')->attr('srcset'));
             });
 
             $appData['whats_new'] = $this->hasData($crawler->filter('div[itemprop="description"]')) != false ?

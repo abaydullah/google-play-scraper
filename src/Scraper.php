@@ -41,9 +41,18 @@ class Scraper
     {
         return (new DeveloperScraper())->scrapeDeveloper($developerId);
     }
+
     public function getDeveloperApps($developerId)
     {
-        return (new DeveloperAppScraper())->scrapeAppsByDeveloperId($developerId);
+        $apps = (new DeveloperAppScraper())->scrapeAppsByDeveloperId($developerId);
+        foreach ($apps as $key => $item) {
+            if ($item['app_url'] == '') {
+                unset($apps[$key]);
+            }
+        }
+        sort($apps);
+        return $apps;
+
     }
 
     public function getSearchApps($search)

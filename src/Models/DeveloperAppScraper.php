@@ -17,7 +17,12 @@ class DeveloperAppScraper
     {
         try {
             $app_url = $this->rootUrl . '/store/apps/developer?id=' . $developerId;
+            $urlIsTrue = stripos(get_headers($app_url, 1)[0], '404') == true;
+            if ($urlIsTrue === true) {
+                $app_url = $this->rootUrl . '/store/apps/dev?id=' . $developerId;
+            }
             $response = $this->webClient->get($app_url);
+
             $content = $response->getBody()->getContents();
             $crawler = new Crawler($content);
             return $crawler->filter('div[role="listitem"]')->each(function (Crawler $node, $i) {
@@ -35,6 +40,11 @@ class DeveloperAppScraper
 
                 $apps['rating'] = $this->hasData($node->filter('span[class="w2kbF"]')) != false ?
                     str_replace('star', '', $node->filter('span[class="w2kbF"]')->text()) : '';
+                if ($apps['rating'] == '') {
+                    $apps['rating'] = $this->hasData($node->filter('div[class="LrNMN"]')) != false ?
+                        str_replace('star', '', $node->filter('div[class="LrNMN"]')->text()) : '';
+                }
+
                 return $apps;
             });
         } catch (GuzzleException $exception) {

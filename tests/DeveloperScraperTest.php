@@ -14,5 +14,9 @@ class DeveloperScraperTest extends TestCase
     {
         $developer = (new Scraper())->getDeveloper('6720847872553662727');
        $this->assertEquals('Microsoft Corporation', $developer['name']);
+
+        $developer = (new Scraper())->getDeveloper('WhatsApp+LLC');
+
+        $this->assertTrue($developer == 404,'404');
     }
 }

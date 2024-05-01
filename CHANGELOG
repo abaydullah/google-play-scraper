@@ -1,0 +1,30 @@
+# CHANGELOG
+
+## 3.0.0 (May 16, 2024)
+
+# Added
+* CHANGELOG
+* LICENSE
+
+# Updated
+* Update Some Missing Information
+* Fixed 404 Error In Developer Apps
+* Fix 404 Error In Developer Information
+
+## 2.5.0 (May 16, 2024)
+
+* Fixed Developer Information Scrape Issue
+* Fixed Developer Apps Duplicate Issue
+
+## 2.0.0 (May 16, 2024)
+
+* Developer Information Scrape Option Added
+* Update Version
+
+## V1.0.0 (Apr 16, 2024)
+
+* version Updated
+
+## V0.1.0 (Apr 15, 2024)
+
+* Initial release.

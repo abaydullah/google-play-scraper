@@ -25,8 +25,8 @@ class AppScraper
             $appData['url'] = $app_url;
             $appData['app_id'] = $appId;
 
-            $appData['title'] = $this->hasData($crawler->filter('h1[itemprop="name"]')) != false ?
-                $crawler->filter('h1[itemprop="name"]')->text() : '';
+            $appData['title'] = $this->hasData($crawler->filter('h1 > [itemprop="name"]')) != false ?
+                $crawler->filter('h1 > [itemprop="name"]')->text() : '';
             $appData['icon'] = $this->hasData($crawler->filter('img[itemprop="image"]')) != false ?
                 $crawler->filter('img[itemprop="image"]')->attr('src') : '';
             $appData['icon_original'] = explode('=', $appData['icon'])[0];

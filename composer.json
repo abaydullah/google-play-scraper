@@ -1,6 +1,5 @@
 {
     "name": "abaydullah/google-play-scraper",
-    "version": "v3.1.0",
     "autoload": {
         "psr-4": {
             "Abaydullah\\GooglePlayScraper\\": "src/"

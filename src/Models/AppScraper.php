@@ -38,7 +38,7 @@ class AppScraper
                 $this->rootUrl . $crawler->filter('div[class="Vbfug auoIOc"] > a')->attr('href') : '';
             $appData['rating'] = $this->hasData($crawler->filter('div[class="jILTFe"]')) != false ?
                 $crawler->filter('div[class="jILTFe"]')->text() : '';
-
+            $appData['histograms'] = [];
             foreach ($crawler->filter('div[class="JzwBgb"]')->each(fn(Crawler $node) => $this->filterNumber($node->filter('div[class="JzwBgb"]')->attr('aria-label'))) as $key => $histogram) {
                 $appData['histograms'][5 - $key] = $histogram;
             }

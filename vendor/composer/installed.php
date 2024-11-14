@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'abaydullah/google-play-scraper',
-        'pretty_version' => 'v3.0.0',
-        'version' => '3.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '77ab21b23fd9c4db1ba7dfcc6247c7c912c5d84d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'abaydullah/google-play-scraper' => array(
-            'pretty_version' => 'v3.0.0',
-            'version' => '3.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '77ab21b23fd9c4db1ba7dfcc6247c7c912c5d84d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
